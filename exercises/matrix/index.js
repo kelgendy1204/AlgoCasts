@@ -25,7 +25,7 @@ function matrix(n) {
     let endColumn = n - 1;
     let endRow = n - 1;
     let counter = 1;
-    while (startColumn < endColumn && startRow < endRow) {
+    while (startColumn <= endColumn && startRow <= endRow) {
         for (var i = startColumn; i <= endColumn; i++) {
             matrixArray[startRow][i] = counter;
             counter++;
@@ -40,14 +40,14 @@ function matrix(n) {
             matrixArray[endRow][i] = counter;
             counter++;
         }
-        endRow++;
+        endRow--;
         for (var i = endRow; i >= startRow; i--) {
             matrixArray[i][startColumn] = counter;
             counter++;
         }
-        endColumn--;
+        startColumn++;
     }
-    console.log(matrixArray);
+    return matrixArray;
 }
 
 module.exports = matrix;
