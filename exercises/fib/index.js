@@ -8,6 +8,31 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function memoize(fn) {
+    const cache = {};
+    return number => {
+        if(cache[number.toString()]) {
+            console.log('from cache');
+            return cache[number.toString()];
+        }
 
-module.exports = fib;
+        cache[number.toString()] = fn(number);
+        return cache[number.toString()];
+    };
+}
+
+function fib(n) {
+    if(n === 1) {
+        return 1;
+    }
+
+    if(n === 0) {
+        return 0;
+    }
+
+    return flastFib(n-1) + flastFib(n-2);
+}
+
+const flastFib = memoize(fib);
+
+module.exports = flastFib;
